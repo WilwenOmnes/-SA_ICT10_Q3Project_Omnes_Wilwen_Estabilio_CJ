@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Checker</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.navbar a {
+    margin-right: 30px;
+    text-decoration: none;
+    color: cyan;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    text-shadow: 0 0 15px cyan;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 110px;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.custom-card {
+    width: 500px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="index.html">Team Checker</a>
+    <a href="players.html">Players</a>
+    <a href="sign.html">Sign Up</a>
+</div>
+
+<div class="page-title">Team Checker</div>
+
+<div class="main-container">
+<div class="card custom-card p-4">
+
+<form>
+
+<div class="mb-3">
+<label>Are you registered?</label><br>
+<input type="radio" name="registration" value="yes"> Yes
+<input type="radio" name="registration" value="no" class="ms-3"> No
+</div>
+
+<div class="mb-3">
+<label>Do you have medical clearance?</label><br>
+<input type="radio" name="clearance" value="yes"> Yes
+<input type="radio" name="clearance" value="no" class="ms-3"> No
+</div>
+
+<div class="mb-3">
+<label>Select Grade</label>
+<select id="grade" class="form-select">
+<option value="">Select</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+</select>
+</div>
+
+<div class="mb-3">
+<label>Select Section</label>
+<select id="section" class="form-select">
+<option value="">Select</option>
+<option value="emerald">Emerald</option>
+<option value="ruby">Ruby</option>
+</select>
+</div>
+
+<div class="mb-3">
+<label>Select Sport</label>
+<select id="sport" class="form-select">
+<option value="basketball">Basketball</option>
+<option value="volleyball">Volleyball</option>
+<option value="badminton">Badminton</option>
+</select>
+</div>
+
+<div class="d-grid">
+<button type="button" class="btn btn-primary" onclick="teamChecker()">Check Team</button>
+</div>
+
+</form>
+
+<div id="output" class="mt-4 fw-bold text-center"></div>
+<div id="image" class="text-center mt-3"></div>
+
+</div>
+</div>
+
+<script>
+function teamChecker() {
+
+const reg = document.querySelector('input[name="registration"]:checked');
+const clear = document.querySelector('input[name="clearance"]:checked');
+const grade = parseInt(document.getElementById("grade").value);
+const section = document.getElementById("section").value;
+const sport = document.getElementById("sport").value;
+
+document.getElementById("output").innerHTML = "";
+document.getElementById("image").innerHTML = "";
+
+if (!reg || !clear || !grade || !section) {
+    document.getElementById("output").innerHTML = "Please complete all fields.";
+    return;
+}
+
+if (reg.value !== "yes") {
+    document.getElementById("output").innerHTML = "Not eligible: You are not registered.";
+    return;
+}
+
+if (clear.value !== "yes") {
+    document.getElementById("output").innerHTML = "Not eligible: Medical clearance required.";
+    return;
+}
+
+if ((grade === 7 || grade === 10) && section === "emerald") {
+    document.getElementById("output").innerHTML =
+        `You are part of the Green Hornets ${sport}!`;
+    document.getElementById("image").innerHTML =
+        "<img src='GREEN.jpg' width='200'>";
+
+} else if ((grade === 8 || grade === 9) && section === "emerald") {
+    document.getElementById("output").innerHTML =
+        `You are part of the Red Team ${sport}!`;
+    document.getElementById("image").innerHTML =
+        "<img src='RED.jpg' width='200'>";
+
+} else if ((grade === 7 || grade === 10) && section === "ruby") {
+    document.getElementById("output").innerHTML =
+        `You are part of the Yellow Team ${sport}!`;
+    document.getElementById("image").innerHTML =
+        "<img src='YELLOW.jpg' width='200'>";
+
+} else if ((grade === 8 || grade === 9) && section === "ruby") {
+    document.getElementById("output").innerHTML =
+        `You are part of the Blue Team ${sport}!`;
+    document.getElementById("image").innerHTML =
+        "<img src='BLUE.jpg' width='200'>";
+}
+
+}
+</script>
+
+</body>
+</html>

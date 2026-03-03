@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Players</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url("Nazuna.png") no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.navbar a {
+    margin-right: 30px;
+    text-decoration: none;
+    color: cyan;
+    font-size: 22px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.navbar a:hover {
+    text-shadow:
+        0 0 5px cyan,
+        0 0 15px cyan,
+        0 0 30px cyan;
+}
+
+/* WHITE 50% BOX */
+.content-box {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    width: 400px;
+}
+
+/* PURPLE BUTTON */
+#show-btn {
+    background: purple;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#show-btn:hover {
+    box-shadow:
+        0 0 10px purple,
+        0 0 25px purple,
+        0 0 50px violet;
+    transform: scale(1.05);
+}
+
+/* PLAYER TEXT */
+#player-list {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="index.html">Team Checker</a>
+    <a href="players.html">Players</a>
+    <a href="sign.html">Sign Up</a>
+</div>
+
+<div class="content-box">
+    <button id="show-btn">Click here to Show</button>
+    <div id="player-list"></div>
+</div>
+
+<script>
+// Same list as Python
+const players = [
+    "Delossantos",
+    "Brar",
+    "Estabilio",
+    "Laeda",
+    "Omnes",
+    "Gale",
+    "Platon",
+    "Alwit",
+    "Razonable",
+    "Garcia"
+];
+
+// Shuffle function (like random.shuffle in Python)
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Button click event
+document.getElementById("show-btn").onclick = function() {
+
+    const playerList = document.getElementById("player-list");
+    playerList.innerHTML = "";
+
+    shuffle(players);
+
+    // FOR LOOP (just like Python)
+    for (let i = 0; i < players.length; i++) {
+        playerList.innerHTML += "<p>" + players[i] + "</p>";
+    }
+};
+</script>
+
+</body>
+</html>

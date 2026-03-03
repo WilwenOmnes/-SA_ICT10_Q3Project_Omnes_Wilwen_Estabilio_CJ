@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign Up Page</title>
+
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url("School.png") no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Navbar*/
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+
+    display: flex;               
+    justify-content: flex-start; 
+    align-items: center;      
+    padding-left: 20px;       
+}
+
+.navbar a {
+    margin-right: 30px;        
+    text-decoration: none;
+    color: cyan;
+    font-size: 22px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.navbar a:hover {
+    text-shadow:
+        0 0 5px cyan,
+        0 0 10px cyan,
+        0 0 20px cyan,
+        0 0 40px cyan;
+}
+
+.signup-box {
+    background-color: rgba(255, 255, 255, 0.55);
+    padding: 40px;
+    width: 300px;
+    text-align: center;
+    border-radius: 15px;
+    backdrop-filter: blur(6px);
+}
+
+.signup-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+}
+
+#signBtn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(135deg, #7b2cff, #b45cff);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#signBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(180, 92, 255, 0.7);
+}
+
+#signBtn:active {
+    transform: scale(0.97);
+}
+
+#message {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.student-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.student-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, cyan, #00e5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.student-img {
+    width: 200px;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.student-img:hover {
+    filter: drop-shadow(0 0 8px cyan)
+            drop-shadow(0 0 16px cyan)
+            drop-shadow(0 0 32px cyan);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.glow-line {
+    position: absolute;
+    width: 300px;
+    height: 3px;
+    background: cyan;
+    bottom: 230px;
+    right: 0;
+    animation: glowMove 3s linear infinite;
+    box-shadow: 0 0 15px cyan, 0 0 30px cyan;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes glowMove {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="index.html" class="nav-link">Team Checker</a>
+    <a href="players.html" class="nav-link">Players</a>
+    <a href="sign.html" class="nav-link">Sign Up</a>
+</div>
+
+<div class="signup-box">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button
+        id="signBtn"
+        type="button"
+        py-click="validate_user">
+        Sign Up
+    </button>
+
+    <div id="message"></div>
+</div>
+
+<div class="student-container">
+    <div class="student-text">Pick a Username and Password</div>
+    <img src="Student.png" class="student-img">
+</div>
+
+<div class="glow-line"></div>
+<py-script src="main.py"></py-script>
+</body>
+</html>
